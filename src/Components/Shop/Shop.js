@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { addToDb } from "../../utilities/addToDb";
+import Cart from "../Cart/Cart";
 import Products from "../Products/Products";
 import "./Shop.css";
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
     useEffect(() => {
         fetch("products.json")
             .then((res) => res.json())
@@ -13,7 +16,8 @@ const Shop = () => {
     }, []);
 
     const addToCartHandler = (product) => {
-        console.log(product);
+        setCart([...cart, product]);
+        addToDb(product.id);
     };
     return (
         <div className="shop">
@@ -27,7 +31,7 @@ const Shop = () => {
                 ))}
             </div>
             <div className="cart-container">
-                <h2>This is cart container</h2>
+                <Cart cart={cart}></Cart>
             </div>
         </div>
     );

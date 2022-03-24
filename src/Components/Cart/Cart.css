@@ -1,0 +1,12 @@
+.cart {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+}
+.cart h3 {
+    margin-top: 0;
+}
+
+.cart-title {
+    color: #333;
+}
