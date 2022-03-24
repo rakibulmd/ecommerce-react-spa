@@ -3,8 +3,6 @@ const addToDb = (id) => {
     let storedUserCart = localStorage.getItem("user-cart");
     if (storedUserCart) {
         userCart = JSON.parse(storedUserCart);
-    } else {
-        localStorage.setItem("user-cart", JSON.stringify(userCart));
     }
 
     let quantity = userCart[id];
@@ -14,6 +12,20 @@ const addToDb = (id) => {
         userCart[id] = 1;
     }
     localStorage.setItem("user-cart", JSON.stringify(userCart));
+    return userCart;
 };
 
-export { addToDb };
+const getCart = () => {
+    let userCart = {};
+    let storedUserCart = localStorage.getItem("user-cart");
+    if (storedUserCart) {
+        userCart = JSON.parse(storedUserCart);
+    }
+    return userCart;
+};
+
+const clearLocalCart = () => {
+    localStorage.removeItem("user-cart");
+};
+
+export { addToDb, getCart, clearLocalCart };
